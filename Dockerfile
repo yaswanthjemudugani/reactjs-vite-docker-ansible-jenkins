@@ -5,7 +5,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
-
 # Stage 2: Serve with Nginx
 FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
