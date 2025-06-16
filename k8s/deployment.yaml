@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+  labels:
+    app: react-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-app
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      imagePullSecrets:
+      - name: acr-auth
+      containers:
+      - name: react-container
+        image: azdlearningacr.azurecr.io/codespacereact:7d01d55
+        ports:
+        - containerPort: 80
+        imagePullPolicy: Always
