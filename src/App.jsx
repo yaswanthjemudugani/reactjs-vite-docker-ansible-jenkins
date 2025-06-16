@@ -1,4 +1,4 @@
-import './App.css';
+vimport './App.css';
 
 function App() {
   return (
@@ -6,7 +6,7 @@ function App() {
       <header className="App-header">
         <img src="Octocat.png" className="App-logo" alt="logo" />
         <p>
-          GitHub Codespaces <span className="heart">♥️</span> React
+          GitHub Codespaces <span className="heart">Dev♥️Ops</span> React
         </p>
         <p className="small">
           Edit <code>src/App.jsx</code> and save to reload.
