@@ -1,13 +1,10 @@
 # Stage 1: Build React app using Vite
-FROM node:18-bullseye AS builder
+FROM node:18 AS builder
 WORKDIR /app
-
 COPY package*.json ./
-RUN npm ci --legacy-peer-deps && npm cache clean --force
-
+RUN npm install
 COPY . .
 RUN npm run build
-
 # Stage 2: Serve with Nginx
 FROM nginx:stable-alpine
 RUN rm -rf /usr/share/nginx/html/*
