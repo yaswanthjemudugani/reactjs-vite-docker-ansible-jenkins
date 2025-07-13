@@ -1,24 +1,29 @@
-name: ci
+name: Build and Push Docker Image
 
 on:
   push:
+    branches:
+      - main
 
 env:
-  IMAGE_NAME: codespaces-react                        
-  IMAGE_TAG: v1.0.${{ github.run_number }}  
+  IMAGE_NAME: codespaces-react
 
 jobs:
   docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Login to Docker Hub
+      - name: Set short commit SHA
+        id: vars
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Set up QEMU
@@ -27,9 +32,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push Docker image
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.SHORT_SHA }}
