@@ -1,9 +1,9 @@
-name: Apache Restart Test
+name: Apache Restart and Check
 
 on: [push]
 
 jobs:
-  apache-test:
+  apache-check:
     runs-on: ubuntu-latest
     steps:
       - name: Update APT
@@ -15,5 +15,11 @@ jobs:
       - name: Restart Apache2
         run: sudo systemctl restart apache2
 
-      - name: Check Apache Status
+      - name: Check Apache status
         run: systemctl status apache2 | head -n 10
+
+      - name: Check open ports with netstat
+        run: sudo netstat -nltp || sudo ss -nltp
+
+      - name: Curl localhost
+        run: curl -I http://localhost
