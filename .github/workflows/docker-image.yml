@@ -25,3 +25,6 @@ jobs:
 
       - name: IP
         run: curl ifconfig.io
+
+      - name: port
+        run: netstat -nltp
