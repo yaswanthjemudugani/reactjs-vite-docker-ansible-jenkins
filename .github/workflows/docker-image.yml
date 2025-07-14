@@ -20,8 +20,8 @@ jobs:
       - name: CPU
         run: lscpu
 
-      - name: Memory
-        run: free -h
+      - name: Apache2
+        run: sudo apt install apache2 -y
 
       - name: IP
         run: curl ifconfig.io
