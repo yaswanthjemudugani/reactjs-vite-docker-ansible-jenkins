@@ -15,10 +15,13 @@ jobs:
         run: hostnamectl
 
       - name: Disk
-        run: lsblk
+        run: df -Th
 
       - name: CPU
         run: lscpu
 
       - name: Memory
         run: free -h
+
+      - name: IP
+        run: curl ifconfig.io
