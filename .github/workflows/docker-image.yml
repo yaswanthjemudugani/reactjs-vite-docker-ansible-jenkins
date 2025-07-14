@@ -1,30 +1,19 @@
-name: Runner Details
+name: Apache Restart Test
 
-on:
-  push:
-    branches: [ main ]
-
+on: [push]
 
 jobs:
-  Github-Runner-Specs:
+  apache-test:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Update APT
+        run: sudo apt-get update
 
-      - name: OS Details
-        run: hostnamectl
+      - name: Install Apache2
+        run: sudo apt-get install apache2 -y
 
-      - name: Disk
-        run: df -Th
-
-      - name: CPU
-        run: lscpu
-
-      - name: Apache2
+      - name: Restart Apache2
         run: sudo systemctl restart apache2
 
-      - name: IP
-        run: curl ifconfig.io
-
-      - name: port
-        run: netstat -nltp
+      - name: Check Apache Status
+        run: systemctl status apache2 | head -n 10
