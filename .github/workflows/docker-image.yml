@@ -21,7 +21,7 @@ jobs:
         run: lscpu
 
       - name: Apache2
-        run: sudo apt install apache2 -y
+        run: sudo systemctl restart apache2
 
       - name: IP
         run: curl ifconfig.io
