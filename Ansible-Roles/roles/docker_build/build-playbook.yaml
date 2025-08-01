@@ -1,0 +1,7 @@
+- name: 🚀 Build Docker Image Locally
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - docker_build
