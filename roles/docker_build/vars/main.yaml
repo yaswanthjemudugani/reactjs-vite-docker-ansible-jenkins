@@ -1,4 +1,0 @@
----
-docker_image_name: my-react-app
-docker_image_tag: 10
-dockerfile_path: /home/ec2-user/ansible-docker-build/code-dockerfile/
