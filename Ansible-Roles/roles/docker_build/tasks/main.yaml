@@ -10,4 +10,4 @@
 
 - name: ✅ Print Build Output Summary
   debug:
-    var: build_output.stdout
+    var: build_output
