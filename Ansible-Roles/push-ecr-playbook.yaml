@@ -1,4 +1,4 @@
-- name: 🚀 Build, Run, and Push Docker Image to ECR
+- name: 🚀 Push Docker Image to ECR
   hosts: localhost
   connection: local
   gather_facts: false
