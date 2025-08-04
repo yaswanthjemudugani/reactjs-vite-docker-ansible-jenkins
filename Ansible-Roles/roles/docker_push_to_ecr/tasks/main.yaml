@@ -19,4 +19,4 @@
 
 - name: ✅ Print push result
   debug:
-    var: push_to_ecr
+    var: push_to_ecr.stdout
