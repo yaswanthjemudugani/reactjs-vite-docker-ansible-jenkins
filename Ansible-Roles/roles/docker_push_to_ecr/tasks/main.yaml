@@ -7,7 +7,7 @@
 
 - name: ✅ Print ECR login result
   debug:
-    var: ecr_login.stdout
+    var: ecr_login
 
 - name: 📤 Push Docker image to AWS ECR
   community.docker.docker_image:
@@ -19,4 +19,4 @@
 
 - name: ✅ Print push result
   debug:
-    var: push_to_ecr.stdout
+    var: push_to_ecr
