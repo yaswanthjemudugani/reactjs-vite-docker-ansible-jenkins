@@ -6,6 +6,23 @@ pipeline {
     }
 
     stages {
+        stage('Inject Git Commit ID - Docker Image Tag') {
+            steps {
+                script {
+                    def commitId = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+
+                    // Print the commit ID
+                    echo "Docker image will be tagged with commit ID: ${commitId}"
+                    
+                    // Update the vars in both role paths
+                    sh """
+                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_build/vars/main.yml
+                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_push_to_ecr/vars/main.yml
+                    """
+                }
+            }
+        }
+
         stage('Docker Build - Ansible Playbook') {
             steps {
                 dir("${WORKSPACE}") {
