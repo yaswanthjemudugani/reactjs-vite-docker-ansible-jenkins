@@ -1,0 +1,7 @@
+docker_image_name: my-react-app
+docker_image_tag: latest
+dockerfile_path: ./docker
+
+aws_region: ap-south-1
+aws_account_id: "123456789012"
+ecr_repository: my-react-app
