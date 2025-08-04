@@ -16,8 +16,8 @@ pipeline {
                     
                     // Update the vars in both role paths
                     sh """
-                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_build/vars/main.yml
-                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_push_to_ecr/vars/main.yml
+                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_build/vars/main.yaml
+                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_push_to_ecr/vars/main.yaml
                     """
                 }
             }
