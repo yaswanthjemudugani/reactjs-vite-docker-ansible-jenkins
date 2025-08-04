@@ -1,4 +1,4 @@
 ---
 docker_image_name: 767397962942.dkr.ecr.ap-south-1.amazonaws.com/ansible-docker/react
 docker_image_tag: 10
-dockerfile_path: Dockerfile
+dockerfile_path: ${WORKSPACE}
