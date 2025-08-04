@@ -4,4 +4,4 @@
   gather_facts: false
 
   roles:
-    - docker_push_ecr
+    - docker_push_to_ecr
