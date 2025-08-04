@@ -13,7 +13,7 @@ pipeline {
         stage('Push to ECR - Ansible Playbook') {
             steps {
                 dir("${WORKSPACE}") {
-                    sh 'ansible-playbook Ansible-Roles/push-to-ecr-playbook.yaml'
+                    sh 'ansible-playbook Ansible-Roles/push-ecr-playbook.yaml'
                 }
             }
         }
