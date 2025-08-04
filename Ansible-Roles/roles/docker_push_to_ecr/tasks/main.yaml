@@ -11,7 +11,7 @@
 
 - name: 📤 Push Docker image to AWS ECR
   community.docker.docker_image:
-    repository: "{{ docker_image_name }}"
+    name: "{{ docker_image_name }}"
     tag: "{{ docker_image_tag }}"
     source: local
     push: true
