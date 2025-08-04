@@ -8,6 +8,6 @@
       path: "{{ dockerfile_path }}"
   register: build_output
 
-- name: 🔍 Print Build Output Summary
+- name: ✅ Print Build Output Summary
   debug:
-    var: build_output
+    var: build_output.stdout
