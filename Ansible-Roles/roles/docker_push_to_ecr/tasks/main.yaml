@@ -1,0 +1,20 @@
+---
+- name: 🧾 Get AWS ECR login password
+  shell: >
+    aws ecr get-login-password --region {{ aws_region }} |
+    docker login --username AWS --password-stdin {{ aws_account_id }}.dkr.ecr.{{ aws_region }}.amazonaws.com
+  register: ecr_login
+  changed_when: false
+
+- name: 🏷️ Tag Docker image for ECR
+  community.docker.docker_image:
+    name: "{{ docker_image_name }}"
+    tag: "{{ docker_image_tag }}"
+    repository: "{{ aws_account_id }}.dkr.ecr.{{ aws_region }}.amazonaws.com/{{ ecr_repository }}"
+    push: false
+
+- name: 📤 Push Docker image to AWS ECR
+  community.docker.docker_image:
+    name: "{{ aws_account_id }}.dkr.ecr.{{ aws_region }}.amazonaws.com/{{ ecr_repository }}"
+    tag: "{{ docker_image_tag }}"
+    push: true
