@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     echo '🧹 Cleaning up all local Docker images...'
-                    sh 'sudo docker rmi -f $(docker images -qa) || true'
+                    sh 'docker rmi -f $(docker images -qa) || true'
                 }
             }
         }
