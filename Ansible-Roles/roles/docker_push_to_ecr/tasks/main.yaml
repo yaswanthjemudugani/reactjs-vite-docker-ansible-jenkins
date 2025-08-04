@@ -1,4 +1,3 @@
----
 - name: 🧾 Get AWS ECR login password
   shell: >
     aws ecr get-login-password --region {{ aws_region }} |
@@ -6,9 +5,18 @@
   register: ecr_login
   changed_when: false
 
+- name: ✅ Print ECR login result
+  debug:
+    var: ecr_login.stdout
+
 - name: 📤 Push Docker image to AWS ECR
   community.docker.docker_image:
-    name: "{{ docker_image_name }}"
+    repository: "{{ docker_image_name }}"
     tag: "{{ docker_image_tag }}"
+    source: local
     push: true
   register: push_to_ecr
+
+- name: ✅ Print push result
+  debug:
+    var: push_to_ecr
