@@ -1,0 +1,23 @@
+- name: 🧹 Remove any existing container with the same name
+  community.docker.docker_container:
+    name: "{{ docker_container_name }}"
+    state: absent
+  ignore_errors: true
+  register: remove_result
+
+- name: 🪵 Debug Remove Result
+  debug:
+    var: remove_result
+
+- name: 🚀 Run Docker container
+  community.docker.docker_container:
+    name: "{{ docker_container_name }}"
+    image: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    state: started
+    ports: "{{ docker_ports }}"
+    restart_policy: always
+  register: run_result
+
+- name: 🪵 Debug Run Result
+  debug:
+    var: run_result
