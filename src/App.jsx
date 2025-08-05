@@ -4,9 +4,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
+        <img src="My-AI-Image.png" className="App-logo" alt="logo" />
         <p>
-          GitHub Codespaces <span className="heart">Dev♥️♥️Ops</span> React
+          GitHub Codespaces for ReactJS Application <span className="heart">Using DevOps Deployments</span>
+          This ReactJS App is deployed using Docker + Ansible Deployment and triggered via Jenkins CI/CD.
         </p>
         <p className="small">
           Edit <code>src/App.jsx</code> and save to reload.
