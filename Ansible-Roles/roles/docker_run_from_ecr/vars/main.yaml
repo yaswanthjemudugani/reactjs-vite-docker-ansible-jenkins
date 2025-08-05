@@ -1,0 +1,4 @@
+docker_image_name: "767397962942.dkr.ecr.ap-south-1.amazonaws.com/ansible-docker/react"
+docker_image_tag: "latest"
+docker_container_name: reactjs-docker-ansible-jenkins
+docker_ports: "80:80"
