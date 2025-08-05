@@ -6,8 +6,10 @@ function App() {
       <header className="App-header">
         <img src="My-AI-Image.png" className="App-logo" alt="logo" />
         <p>
-          Source Code taken from GitHub Codespaces for ReactJS Application <span className="heart">Using DevOps Deployments</span><br />
-          This ReactJS App is deployed using Docker + Ansible Deployment and triggered via Jenkins CI/CD.
+          I have taken the source code from GitHub Codespaces for this ReactJS Application.<br />
+          The Docker image was built using a custom Dockerfile and deployed via an Ansible role.<br />
+          The image was then pushed to AWS ECR using Ansible, and the container was launched from the ECR image using the same Ansible role.<br />
+          This deployment pipeline was orchestrated and triggered via Jenkins CI/CD.
         </p>
         <p className="small">
           Edit <code>src/App.jsx</code> and save to reload.
