@@ -15,6 +15,7 @@ pipeline {
                     sh """
                         sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_build/vars/main.yaml
                         sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_push_to_ecr/vars/main.yaml
+                        sed -i 's/^docker_image_tag: .*/docker_image_tag: ${commitId}/' Ansible-Roles/roles/docker_run_from_ecr/vars/main.yaml
                         echo "Docker image will be tagged with commit ID: ${commitId}"
                     """
                 }
@@ -42,6 +43,14 @@ pipeline {
                 script {
                     echo '🧹 Cleaning up all local Docker images...'
                     sh 'docker rmi -f $(docker images -qa) || true'
+                }
+            }
+        }
+
+        stage('Run Container from ECR - Ansible Playbook') {
+            steps {
+                dir("${WORKSPACE}") {
+                    sh 'ansible-playbook Ansible-Roles/run-container-playbook.yaml'
                 }
             }
         }
