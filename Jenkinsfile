@@ -1,9 +1,9 @@
 pipeline {
     agent { label 'ansible-node' }
 
-    environment {
-        AWS_SHARED_CREDENTIALS_FILE = '/home/yaswanth/.aws/credentials'
-    }
+    // environment {
+    //     AWS_SHARED_CREDENTIALS_FILE = '/home/yaswanth/.aws/credentials'
+    // }
 
     stages {
         stage('Inject Git Commit ID - Docker Image Tag') {
