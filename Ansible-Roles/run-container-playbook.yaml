@@ -1,0 +1,7 @@
+- name: 🚀 Deploy Docker Container from ECR Repo
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  roles:
+    - docker_run_from_ecr
