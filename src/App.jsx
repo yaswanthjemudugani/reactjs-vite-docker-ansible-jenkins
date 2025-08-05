@@ -15,11 +15,11 @@ function App() {
         <p>
           <a
             className="App-link"
-            href="https://www.linkedin.com/in/yaswanth-jemudugani/"
+            href="https://github.com/yaswanth00369"
             target="_blank"
             rel="noopener noreferrer"
           >
-            My Profile
+            My Github Profile
           </a>
         </p>
       </header>
