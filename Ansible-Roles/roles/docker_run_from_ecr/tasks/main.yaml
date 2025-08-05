@@ -1,18 +1,9 @@
-- name: 🧹 Remove any existing container with the same name
-  community.docker.docker_container:
-    name: "{{ docker_container_name }}"
-    state: absent
-  ignore_errors: true
-  register: remove_result
-
-- name: 🪵 Debug Remove Result
-  debug:
-    var: remove_result
-
-- name: 🚀 Run Docker container
+- name: 🚀 Run or Update Docker container
   community.docker.docker_container:
     name: "{{ docker_container_name }}"
     image: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    pull: yes           # Pull latest image from ECR
+    recreate: yes       # Recreate container if image tag changed
     state: started
     ports: "{{ docker_ports }}"
     restart_policy: always
