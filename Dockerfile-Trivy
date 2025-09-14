@@ -1,0 +1,29 @@
+# Stage 1: Build React app using Vite
+FROM node:18 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: Serve with Nginx
+FROM nginx:stable-alpine
+
+# Create a non-root user and group
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Remove default html and copy build files
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /app/dist /usr/share/nginx/html/
+
+# Change ownership to non-root user
+RUN chown -R appuser:appgroup /usr/share/nginx/html
+
+# Switch to non-root user
+USER appuser
+
+EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget -qO- http://localhost:80 || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]
